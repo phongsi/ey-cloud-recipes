@@ -151,9 +151,15 @@
 #end
 
 if node[:instance_role] == 'util' && node[:name] =~ /delayed_job/
-  ey_cloud_report "delayed_job" do 
-    message "including delayed_job recipe" 
+  ey_cloud_report "delayed_job" do
+    message "including delayed_job recipe"
   end
   Chef::Log.info "including delayed_job recipe"
   include_recipe "delayed_job"
+
+  ey_cloud_report "delayed_job" do
+    message "including cron job"
+  end
+  Chef::Log.info "including cron job"
+  include_recipe "cron_jobs"
 end
