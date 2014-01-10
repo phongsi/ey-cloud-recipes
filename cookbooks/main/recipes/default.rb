@@ -150,4 +150,8 @@
   # postgresql9_pg_freespacemap "postgres"
 #end
 
+ey_cloud_report "delayed_job" do 
+  message "including delayed_job recipe" 
+end
+Chef::Log.info "including delayed_job recipe"
 include_recipe "delayed_job"
