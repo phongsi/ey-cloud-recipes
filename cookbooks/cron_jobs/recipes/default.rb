@@ -9,6 +9,9 @@ if node[:name] =~ /delayed_job/
   cron "task_name" do
     minute '1'
     user 'deploy'
-    command "cd /data/clockwisemd_staging/current && rails runner -e production '#{queue_page_job}'"
+    command <<-EOH
+      cd /data/clockwisemd_staging/current
+      rails runner -e production "#{queue_page_job}"
+    EOH
   end
 end
