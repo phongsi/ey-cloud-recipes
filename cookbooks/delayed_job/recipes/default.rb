@@ -34,7 +34,7 @@ if node[:instance_role] == "solo" || (node[:instance_role] == "util" && node[:na
       end
     end
     
-    execute "monit reload" do
+    execute "source /data/clockwisemd_staging/shared/config/env.custom && monit reload" do
        action :run
        epic_fail true
     end
