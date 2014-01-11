@@ -12,12 +12,12 @@ if node[:name] =~ /delayed_job/
   cron "minute tasks" do
     minute '*'
     user 'deploy'
-    command "cd /data/clockwisemd_staging/current && /usr/local/bin/bundle exec rails runner -e production '#{page_job} && #{remind_job} && #{late_job}'"
+    command "cd /data/clockwisemd_staging/current && RAILS_ENV=production /usr/local/bin/bundle exec rake sms_callback_patients"
   end
 
   cron "2 minute tasks" do
     minute '*/2'
     user 'deploy'
-    command "cd /data/clockwisemd_staging/current && /usr/local/bin/bundle exec rails runner -e production '#{delay_job}'"
+    command "cd /data/clockwisemd_staging/current && RAILS_ENV=production /usr/local/bin/bundle exec rake sms_delay_patients"
   end
 end
