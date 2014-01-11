@@ -12,18 +12,12 @@ if node[:name] =~ /delayed_job/
   cron "minute tasks" do
     minute '1'
     user 'deploy'
-    command <<-EOH
-      cd /data/clockwisemd_staging/current
-      rails runner -e production '#{page_job} && #{remind_job} && #{late_job}'
-    EOH
+    command "cd /data/clockwisemd_staging/current && rails runner -e production '#{page_job} && #{remind_job} && #{late_job}'"
   end
 
   cron "2 minute tasks" do
     minute '2'
     user 'deploy'
-    command <<-EOH
-      cd /data/clockwisemd_staging/current
-      rails runner -e production '#{delay_job}'
-    EOH
+    command "cd /data/clockwisemd_staging/current && rails runner -e production '#{delay_job}'"
   end
 end
