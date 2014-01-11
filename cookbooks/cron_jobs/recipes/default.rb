@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-page_job = 'RAILS_ENV=production /usr/local/bin/bundle exec rake sms_callback_patients'
+page_job = 'RAILS_ENV=production /usr/local/bin/bundle exec rake sms_callback_patients --trace'
 delay_job = 'RAILS_ENV=production /usr/local/bin/bundle exec rake sms_delay_patients'
 remind_job = 'RAILS_ENV=production /usr/local/bin/bundle exec rake sms_reminder_patients'
 late_job = 'RAILS_ENV=production /usr/local/bin/bundle exec rake sms_late_patients'
