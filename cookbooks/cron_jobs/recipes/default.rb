@@ -12,12 +12,12 @@ if node[:name] =~ /delayed_job/
   cron "minute tasks" do
     minute '*'
     user 'deploy'
-    command "/usr/bin/lockrun --lockfile=/tmp/jobname.lockrun -- sh -c 'cd /data/clockwisemd_staging/current && #{page_job} && #{remind_job} && #{late_job}'"
+    command "/usr/bin/lockrun --lockfile=/tmp/jobname.lockrun -- sh -c \"cd /data/clockwisemd/current && #{page_job} && #{remind_job} && #{late_job}\""
   end
 
   cron "2 minute tasks" do
     minute '*/2'
     user 'deploy'
-    command "/usr/bin/lockrun --lockfile=/tmp/jobname.lockrun -- sh -c 'cd /data/clockwisemd_staging/current && #{delay_job}'"
+    command "/usr/bin/lockrun --lockfile=/tmp/jobname.lockrun -- sh -c \"cd /data/clockwisemd/current && #{delay_job}\""
   end
 end
